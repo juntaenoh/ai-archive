@@ -1,5 +1,16 @@
 @import "tailwindcss";
+@import "pretendard/dist/web/static/pretendard.css";
 @plugin "@tailwindcss/typography";
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
