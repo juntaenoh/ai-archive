@@ -16,3 +16,11 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+.works-card {
+  background: rgba(255, 255, 255, 0.45);
+  transition: background 0.15s;
+}
+.works-card:hover {
+  background: rgba(255, 255, 255, 0.68);
+}

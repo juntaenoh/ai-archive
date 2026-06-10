@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>노준태 — 소개</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F4EEDD;
+    --rule:#C75B39;
+    --rule-soft:rgba(199,91,57,.28);
+    --rule-faint:rgba(199,91,57,.14);
+    --ink:#241F1B;
+    --ink-soft:#6F655A;
+    --ink-faint:#A89C8B;
+    --accent:#C75B39;
+    --accent-deep:#A6452A;
+    --gold:#B08A3E;
+    --cell:48px;
+    --serif:"Noto Serif KR", serif;
+    --sans:"Noto Sans KR", sans-serif;
+    --mono:"JetBrains Mono", monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif);color:var(--ink);background:var(--paper);
+    min-height:100vh;
+  }
+  /* 원고지 바탕 (고정) */
+  .paper-field{position:fixed;inset:0;z-index:-1;
+    background:
+      radial-gradient(120% 90% at 70% 0%, rgba(255,255,255,.5), transparent 55%),
+      linear-gradient(180deg,#F6F1E1,#EDE3CC);}
+  .paper-field::before{content:"";position:absolute;inset:0;opacity:.5;mix-blend-mode:multiply;
+    background-image:repeating-linear-gradient(0deg, rgba(120,98,70,.05) 0 1px, transparent 1px 3px);}
+  .paper-field::after{content:"";position:absolute;inset:0;opacity:.45;
+    background-image:
+      linear-gradient(to right, var(--rule-faint) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--rule-faint) 1px, transparent 1px);
+    background-size: var(--cell) var(--cell);
+    -webkit-mask-image:radial-gradient(150% 120% at 50% 0%, #000 60%, transparent 100%);
+            mask-image:radial-gradient(150% 120% at 50% 0%, #000 60%, transparent 100%);}
+
+  .page{max-width:1040px;margin:0 auto;padding:70px 40px 110px;position:relative}
+
+  .corner{position:fixed;top:22px;left:30px;z-index:5;font-family:var(--sans);font-size:11px;letter-spacing:.34em;color:var(--ink-faint)}
+  .corner b{color:var(--accent-deep);font-weight:700}
+
+  /* ---------- HERO ---------- */
+  .hero{display:grid;grid-template-columns:248px 1fr;gap:48px;align-items:start;margin-bottom:92px}
+  .photo-frame{position:relative;background:#fff;padding:9px;
+    box-shadow:0 20px 40px -24px rgba(60,40,20,.55);border:1px solid rgba(199,91,57,.18)}
+  .photo-frame::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-1.6deg);
+    width:104px;height:22px;background:rgba(199,91,57,.16);border:1px dashed rgba(199,91,57,.4)}
+  image-slot{display:block;width:100%;height:300px}
+  .photo-cap{margin-top:14px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.26em;color:var(--ink-faint)}
+
+  .hero-kicker{font-family:var(--mono);font-size:12px;letter-spacing:.28em;color:var(--accent-deep);display:flex;align-items:center;gap:10px;margin-bottom:22px}
+  .hero-kicker .bar{width:30px;height:2px;background:var(--accent)}
+  .greet{font-size:23px;font-weight:500;color:var(--ink-soft);line-height:1.55;letter-spacing:-.01em}
+  .name-row{display:flex;align-items:flex-end;gap:14px;margin:14px 0 26px;flex-wrap:wrap}
+  .name-grid{display:flex}
+  .ncell{width:62px;height:62px;border:1.5px solid var(--rule-soft);margin-left:-1.5px;
+    display:grid;place-items:center;font-size:40px;font-weight:700;color:var(--ink);position:relative}
+  .ncell::after{content:"";position:absolute;inset:0;opacity:.5;
+    background:
+      linear-gradient(to right, transparent 49.6%, var(--rule-faint) 49.6% 50.4%, transparent 50.4%),
+      linear-gradient(to bottom, transparent 49.6%, var(--rule-faint) 49.6% 50.4%, transparent 50.4%)}
+  .name-row .suffix{font-size:25px;font-weight:500;color:var(--ink);padding-bottom:6px}
+  .lead{font-size:16px;line-height:2;color:#3A332B;text-wrap:pretty;max-width:560px}
+  .lead b{font-weight:700;color:var(--accent-deep);box-shadow:inset 0 -10px 0 rgba(199,91,57,.1)}
+
+  /* ---------- SECTION ---------- */
+  .sec{display:flex;align-items:center;gap:14px;margin:0 0 30px}
+  .sec-no{width:38px;height:38px;border:1.5px solid var(--accent);border-radius:50%;
+    display:grid;place-items:center;color:var(--accent-deep);font-size:17px;font-weight:700;
+    box-shadow:0 0 0 3px rgba(199,91,57,.1);flex:none}
+  .sec-en{font-family:var(--mono);font-size:13px;letter-spacing:.3em;color:var(--accent-deep);text-transform:uppercase}
+  .sec-ko{font-family:var(--sans);font-size:13px;color:var(--ink-faint);letter-spacing:.08em}
+  .sec-line{flex:1;height:1px;background:var(--rule-soft)}
+  section{margin-bottom:88px}
+
+  /* ---------- PROFILE ---------- */
+  .prow{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--rule-faint)}
+  .prow:first-of-type{border-top:1.5px solid var(--rule-soft)}
+  .prow:last-of-type{border-bottom:1px solid var(--rule-faint)}
+  .prow dt{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--accent-deep);padding-top:3px}
+  .org{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+  .org .nm{font-size:19px;font-weight:700;color:var(--ink)}
+  .org .pd{font-family:var(--mono);font-size:13px;color:var(--ink-soft);letter-spacing:.04em}
+  .clist{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .clist li{position:relative;padding-left:18px;font-size:15px;line-height:1.7;color:#3A332B}
+  .clist li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);transform:rotate(45deg)}
+  .doclink{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-family:var(--sans);font-size:13px;white-space:nowrap;
+    color:var(--accent-deep);border:1px solid var(--rule-soft);background:rgba(199,91,57,.06);
+    padding:9px 15px;border-radius:2px;cursor:pointer;text-decoration:none;transition:all .2s}
+  .doclink:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .simple{font-size:16px;color:var(--ink)}
+  .simple .pd{font-family:var(--mono);font-size:13px;color:var(--ink-soft);margin-left:14px;letter-spacing:.04em}
+
+  /* ---------- SKILLS ---------- */
+  .skill-intro{font-size:15px;line-height:1.9;color:var(--ink-soft);margin-bottom:30px;text-wrap:pretty}
+  .skill-intro b{color:var(--accent-deep);font-weight:700}
+  .grp-title{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--ink-faint);margin:34px 0 12px}
+  .grp-title:first-child{margin-top:0}
+  .skills{display:flex;flex-direction:column;gap:10px}
+  .skill{border:1px solid var(--rule-soft);background:rgba(255,255,255,.4)}
+  .skill-head{display:flex;align-items:center;gap:16px;padding:15px 18px;cursor:pointer;user-select:none}
+  .skill-head:hover{background:rgba(199,91,57,.05)}
+  .lvl{width:30px;height:30px;flex:none;display:grid;place-items:center;font-size:15px;font-weight:700;color:#fff;border-radius:2px}
+  .lvl.상{background:var(--accent)}
+  .lvl.중{background:#C99A4E}
+  .lvl.하{background:var(--ink-faint)}
+  .skill-name{font-size:17px;font-weight:600;color:var(--ink);flex:1}
+  .lvl-tag{font-family:var(--sans);font-size:11px;letter-spacing:.18em;color:var(--ink-faint)}
+  .chev{width:18px;height:18px;color:var(--accent);transition:transform .3s;flex:none}
+  .skill.open .chev{transform:rotate(180deg)}
+  .skill-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .skill.open .skill-body{max-height:240px}
+  .skill-body-inner{padding:0 18px 17px 64px;display:flex;flex-direction:column;gap:7px}
+  .skill-body-inner span{position:relative;padding-left:16px;font-size:14.5px;line-height:1.65;color:#3A332B}
+  .skill-body-inner span::before{content:"–";position:absolute;left:0;color:var(--accent)}
+
+  .tools{display:flex;flex-wrap:wrap;gap:10px}
+  .tool{font-family:var(--mono);font-size:14px;color:var(--accent-deep);background:rgba(199,91,57,.07);
+    border:1px solid var(--rule-soft);border-radius:2px;padding:9px 16px}
+
+  /* ---------- AWARDS ---------- */
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  thead th{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--ink-faint);
+    text-align:left;padding:12px 14px;border-bottom:1.5px solid var(--rule-soft)}
+  tbody td{padding:17px 14px;border-bottom:1px solid var(--rule-faint);vertical-align:top;color:#3A332B;line-height:1.55}
+  tbody tr:hover{background:rgba(199,91,57,.04)}
+  td.t-title{font-weight:600;color:var(--ink);font-size:15px;width:230px}
+  td.t-date{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+  .rank{display:inline-flex;align-items:center;gap:7px;font-weight:700;color:var(--ink);white-space:nowrap}
+  .medal{width:15px;height:15px;flex:none}
+  .m-gold{color:var(--gold)}
+  .m-acc{color:var(--accent)}
+  td.t-desc{color:var(--ink-soft);font-size:13.5px}
+
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr}
+    .prow{grid-template-columns:1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#F4EEDD"/>
+  <g stroke="#C75B39" stroke-width="1.2" opacity="0.7" fill="none">
+    <rect x="34" y="34" width="11" height="11"/><rect x="45" y="34" width="11" height="11"/><rect x="56" y="34" width="11" height="11"/>
+    <rect x="34" y="45" width="11" height="11"/><rect x="45" y="45" width="11" height="11"/><rect x="56" y="45" width="11" height="11"/>
+  </g>
+  <text x="50" y="68" font-family="serif" font-size="11" font-weight="700" fill="#241F1B" text-anchor="middle">人</text>
+</svg>
+</template>
+<div class="paper-field"></div>
+<div class="corner"><b>原稿</b>　ABOUT</div>
+<div id="root"></div>
+
+<script src="image-slot.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel">
+const {useState} = React;
+
+const HARD=[
+  {name:"Dart / Flutter", lvl:"상", detail:["실제 서비스 운영 경험 (1년)","앱 성능 최적화"]},
+  {name:"아키텍처", lvl:"중", detail:["Riverpod 이용 클린 아키텍처 구현"]},
+  {name:"Unity / C#", lvl:"하", detail:["Unity 이용 아바타 리깅 경험"]},
+  {name:"Python / C++", lvl:"중", detail:["알고리즘 문제 해결"]},
+];
+const SOFT=[
+  {name:"커뮤니케이션", lvl:"상", detail:["내·외부 파트너 협업","외부 업체 핸들링"]},
+  {name:"논리적 사고", lvl:"상", detail:["설득을 위한 논리적 정리 중시"]},
+  {name:"리더십", lvl:"중", detail:["팀 방향성 유지 중시"]},
+  {name:"주도성", lvl:"상", detail:["본질을 찾아 스스로의 방향 확립 중시"]},
+];
+const TOOLS=["Figma","Jira / Confluence"];
+const AWARDS=[
+  {title:"2023 한이음 공모전", org:"한국정보산업연합회", date:"2023.11.21", rank:"동상", r:"gold", desc:"수중 협소구역 무인 탐사정"},
+  {title:"2023 대학연합 임베디드 창의로봇 Challenge", org:"한국로봇산업협회", date:"2023.08.25", rank:"우수상", r:"acc", desc:"EV3 이용한 SPACE Challenge 2등"},
+  {title:"캡스톤 디자인 경진대회", org:"LINC 3.0 사업단", date:"2022.12.07", rank:"동상", r:"gold", desc:"인공지능 기반 주차 안내시스템 앱 개발"},
+  {title:"2022 스마트해상물류경진대회", org:"한국정보산업연합회", date:"2022.11.30", rank:"동상", r:"gold", desc:"탁도 센서를 이용한 스마트 해양오염 모니터링"},
+];
+
+function Chev(){return(<svg className="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>);}
+function Medal({cls}){return(<svg className={"medal "+cls} viewBox="0 0 24 24" fill="none"><circle cx="12" cy="14.5" r="6" fill="currentColor" opacity=".9"/><circle cx="12" cy="14.5" r="3" fill="#fff" opacity=".4"/><path d="M8.5 3l2 5M15.5 3l-2 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>);}
+
+function Sec({no,en,ko}){
+  return(<div className="sec"><span className="sec-no">{no}</span><span className="sec-en">{en}</span><span className="sec-ko">{ko}</span><span className="sec-line"></span></div>);
+}
+
+function Skill({s}){
+  const [open,setOpen]=useState(false);
+  return(
+    <div className={"skill"+(open?" open":"")}>
+      <div className="skill-head" onClick={()=>setOpen(o=>!o)}>
+        <span className={"lvl "+s.lvl}>{s.lvl==="상"?"上":s.lvl==="중"?"中":"下"}</span>
+        <span className="skill-name">{s.name}</span>
+        <span className="lvl-tag">{s.lvl}</span>
+        <Chev/>
+      </div>
+      <div className="skill-body">
+        <div className="skill-body-inner">{s.detail.map((d,i)=><span key={i}>{d}</span>)}</div>
+      </div>
+    </div>
+  );
+}
+
+function App(){
+  return(
+    <div className="page">
+      {/* HERO */}
+      <div className="hero">
+        <div>
+          <div className="photo-frame">
+            <image-slot id="profile-photo" shape="rect" placeholder="증명사진을 끌어다 놓으세요"></image-slot>
+          </div>
+          <div className="photo-cap">증　明</div>
+        </div>
+        <div>
+          <div className="hero-kicker"><span className="bar"></span>ABOUT · 開發者</div>
+          <div className="greet">안녕하세요.<br/>IT 서비스의 본질을 찾는 개발자</div>
+          <div className="name-row">
+            <div className="name-grid">
+              <div className="ncell">노</div><div className="ncell">준</div><div className="ncell">태</div>
+            </div>
+            <span className="suffix">입니다.</span>
+          </div>
+          <p className="lead">총 2년 중 1년은 직접 개발을 경험하며 제품의 구조와 구현을 몸으로 익혔고, 이후 <b>서비스 기획을 병행함으로</b> 전체 구조를 주도적으로 설계해왔습니다.</p>
+        </div>
+      </div>
+
+      {/* PROFILE */}
+      <section>
+        <Sec no="壹" en="Profile" ko="약력"/>
+        <dl className="prow">
+          <dt>경　력</dt>
+          <dd>
+            <div className="org"><span className="nm">Care&amp;Co</span><span className="pd">2023.01 — 현재</span></div>
+            <ul className="clist">
+              <li>Flutter 기반 BLE 연동 앱 개발 (1년)</li>
+              <li>족저압·비전 측정 장비 기반 헬스케어 서비스 기획</li>
+              <li>B2C(홈트), B2B2C(피트니스), 연구자 서비스 기획 및 설계</li>
+              <li>병원·지자체·해외 전시 실증 경험</li>
+            </ul>
+            <a className="doclink" href="#" onClick={(e)=>e.preventDefault()}>경력 기술서 보기 →</a>
+          </dd>
+        </dl>
+        <dl className="prow">
+          <dt>학　력</dt>
+          <dd className="simple">한국해양대학교 컴퓨터공학전공<span className="pd">2018.03 — 2024.02</span></dd>
+        </dl>
+        <dl className="prow">
+          <dt>외국어</dt>
+          <dd className="simple">회화<span className="pd">OPIc IL</span></dd>
+        </dl>
+      </section>
+
+      {/* SKILLS */}
+      <section>
+        <Sec no="貳" en="Skills" ko="역량"/>
+        <p className="skill-intro">역량의 전문성에 따라 <b>상 · 중 · 하</b> 수준으로 분류했습니다. 각 항목을 누르면 상세 내용을 확인할 수 있습니다.</p>
+        <div className="grp-title">HARD SKILLS</div>
+        <div className="skills">{HARD.map((s,i)=><Skill s={s} key={i}/>)}</div>
+        <div className="grp-title">SOFT SKILLS</div>
+        <div className="skills">{SOFT.map((s,i)=><Skill s={s} key={i}/>)}</div>
+        <div className="grp-title">TOOLS</div>
+        <div className="tools">{TOOLS.map((t,i)=><span className="tool" key={i}>{t}</span>)}</div>
+      </section>
+
+      {/* AWARDS */}
+      <section style={{marginBottom:0}}>
+        <Sec no="參" en="Awards" ko="수상"/>
+        <table>
+          <thead><tr><th>제목</th><th>수여 기관</th><th>일자</th><th>수상</th><th>세부 정보</th></tr></thead>
+          <tbody>
+            {AWARDS.map((a,i)=>(
+              <tr key={i}>
+                <td className="t-title">{a.title}</td>
+                <td>{a.org}</td>
+                <td className="t-date">{a.date}</td>
+                <td><span className="rank"><Medal cls={a.r==="gold"?"m-gold":"m-acc"}/>{a.rank}</span></td>
+                <td className="t-desc">{a.desc}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
